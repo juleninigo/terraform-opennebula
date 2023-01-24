@@ -1,8 +1,9 @@
 resource "opennebula_virtual_machine" "ubuntu" {
+  count = var.conteo_instancias
 
   template_id = var.opennebula_template_id
 
-  name = "ubuntu-22-04"
+   name = "ubuntu-22-04${count.index +1}"
 
   cpu    = 0.5
   memory = 1024
@@ -22,4 +23,5 @@ resource "opennebula_virtual_machine" "ubuntu" {
     target   = "vda"
     size     = 8192
   }
+
 }
